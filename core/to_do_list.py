@@ -38,6 +38,18 @@ class ToDoList:
             if id == task.id:
                 return task
         return None
+    
+    def update_task(self,id,name,description,priority,status):
+        for task in self.Tasks:
+            if id == task.id:
+                task.name = name
+                task.description = description
+                task.priority=priority
+                task.status=status
+                self.save_tasks()
+                return "task updated"
+        return f"Task was not found"
+                
 
     def load_tasks(self):
         self.Tasks.clear()
