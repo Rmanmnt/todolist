@@ -44,10 +44,11 @@ def add_task_window(root, controller, call_back=None):
     def submit_task():
         name = name_entry.get().strip()
         description = description_text.get("1.0", "end").strip()
+        print("DEBUG description repr:", repr(description))
         priority = priority_combo.get()
         status = status_combo.get()
 
-        flag, messages = controller.check_add_task_entry_values(name, description, priority)
+        flag, messages = controller.check_add_task_entry_values(name, description, priority,status)
         if flag:
             result = controller.add_task(name, description, priority, status)
             messagebox.showinfo('Add Task', result)

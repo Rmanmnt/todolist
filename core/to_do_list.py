@@ -8,8 +8,7 @@ class ToDoList:
     
     def add_task(self, name,description,priority,status):
         task = Task(name,description,priority,status)
-        for t in self.Tasks:
-            if t.name == task.name:
+        if self.check_repetitive_name(task.name):
                 return f"Task '{task.name}' already exists."
         self.Tasks.append(task)
         self.save_tasks()
@@ -73,3 +72,9 @@ class ToDoList:
         for task in self.Tasks:
             if task.name == name:
                 return task.id
+            
+    def check_repetitive_name (self,name,id=None):
+        for task in self.Tasks:
+            if task.name == name and task.id != id:
+                return True
+        return False
